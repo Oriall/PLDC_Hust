@@ -1,7 +1,7 @@
 
 # LexQuiz — General Law Quiz Platform
 
-A dark-mode, browser-based quiz application for reviewing the General Law (Pháp Luật Đại Cương) course. Built with plain HTML, CSS, and JavaScript (ES modules) — no build step or framework required.
+A dark-mode, browser-based quiz application for reviewing the General Law (Phap Luat Dai Cuong) course. Built with plain HTML, CSS, and JavaScript (ES modules) — no build step or framework required.
 
 ## Overview
 
@@ -13,20 +13,22 @@ LexQuiz organizes 175 multiple-choice questions across five question sets and of
 - CSS3 with custom properties (`style.css`) — dark theme, monospace + sans-serif type pairing
 - Vanilla JavaScript, ES modules (`app.js`)
 - Phosphor Icons (via CDN) for all iconography — no emoji used anywhere in the UI
-- Question data stored as separate ES module files (`quizData01.js` – `quizData05.js`)
+- Question data stored as separate ES module files (`quizData01.js` to `quizData05.js`)
 
 ## File Structure
 
+```
 .
 ├── index.html          Main HTML shell, contains all screens
-├── style.css            All styling and theme tokens
-├── app.js                Application logic and state management
-├── quizData01.js         Question set 1 (sample structure included)
-├── quizData02.js         Question set 2
-├── quizData03.js         Question set 3
-├── quizData04.js         Question set 4
-├── quizData05.js         Question set 5
-└── docs/                 PDF files referenced by the Library section
+├── style.css           All styling and theme tokens
+├── app.js              Application logic and state management
+├── quizData01.js        Question set 1 (sample structure included)
+├── quizData02.js        Question set 2
+├── quizData03.js        Question set 3
+├── quizData04.js        Question set 4
+├── quizData05.js        Question set 5
+└── docs/                PDF files referenced by the Library section
+```
 
 ## Features
 
@@ -34,9 +36,9 @@ LexQuiz organizes 175 multiple-choice questions across five question sets and of
 
 Entry point for the quiz. Lets the user choose one of three modes and configure the question scope before starting.
 
-- **Exam Mode** — single question set, timed countdown, results are scored only after final submission.
-- **Practice Mode** — single question set, no timer, correct/incorrect feedback shown immediately after each answer.
-- **Flashcard Mode** — combines all five sets or any custom subset selected via multi-select chips, with sequential or randomized question order.
+- Exam Mode — single question set, timed countdown, results are scored only after final submission.
+- Practice Mode — single question set, no timer, correct/incorrect feedback shown immediately after each answer.
+- Flashcard Mode — combines all five sets or any custom subset selected via multi-select chips, with sequential or randomized question order.
 
 ### 2. Quiz Screen (Exam / Practice)
 
@@ -69,7 +71,7 @@ Entry point for the quiz. Lets the user choose one of three modes and configure 
 
 ### 6. External Resources
 
-- Curated grid of links to outside study platforms and official legal references (e.g. flashcard tools, quiz platforms, government legal portals)
+- Curated grid of links to outside study platforms and official legal references (flashcard tools, quiz platforms, government legal portals)
 - Each entry includes an icon, short description, and category tag
 - All links open in a new tab; a disclaimer notes that linked content is third-party and not affiliated with this site
 
@@ -96,7 +98,7 @@ export const quizMetaXX = {
   title: "Set title",
   source: "Source name",
   totalQuestions: 35,
-  timeLimit: 18,        // minutes
+  timeLimit: 18,
   idRange: [1, 35],
 };
 
@@ -107,17 +109,16 @@ To add a new question set, create a new file following this pattern, then import
 
 ## Customization
 
-- **PDF Library** — edit the `PDF_LIBRARY` array in `app.js` to add, remove, or update documents. Each entry requires `title`, `category`, `desc`, `size`, and `url`.
-- **External Links** — edit the `EXTERNAL_LINKS` array in `app.js` to manage the resources shown on the Links screen.
-- **Theme** — color tokens, fonts, and spacing are defined as CSS custom properties at the top of `style.css` and can be adjusted globally from there.
+- PDF Library — edit the `PDF_LIBRARY` array in `app.js` to add, remove, or update documents. Each entry requires `title`, `category`, `desc`, `size`, and `url`.
+- External Links — edit the `EXTERNAL_LINKS` array in `app.js` to manage the resources shown on the Links screen.
+- Theme — color tokens, fonts, and spacing are defined as CSS custom properties at the top of `style.css` and can be adjusted globally from there.
 
 ## Running Locally
 
 Because the app uses ES modules, it must be served over HTTP rather than opened directly as a local file. Any static server works, for example:
 
-```bash
+```
 npx serve .
 ```
 
 Then open the provided local address in a browser.
-
