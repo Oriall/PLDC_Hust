@@ -3,207 +3,309 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz — Pháp Luật Đại Cương</title>
+  <title>LexQuiz — Pháp Luật Đại Cương</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Phosphor Icons (professional, no emoji) -->
-   <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
 </head>
 <body>
 
-  <!-- ═══════════════════ SCREEN: HOME ═══════════════════ -->
-  <div id="screen-home" class="screen active">
-    <header class="home-header">
-      <div class="brand">
-        <i class="ph ph-scales" aria-hidden="true"></i>
-        <span>LexQuiz</span>
+<!-- ══════════════════════ BOTTOM NAV ══════════════════════ -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="nav-item active" data-screen="home">
+    <i class="ph ph-house"></i><span>Trang chủ</span>
+  </button>
+  <button class="nav-item" data-screen="library">
+    <i class="ph ph-books"></i><span>Thư viện</span>
+  </button>
+</nav>
+
+<!-- ══════════════════════ SCREEN: HOME ══════════════════════ -->
+<div id="screen-home" class="screen active">
+  <header class="home-header">
+    <div class="brand">
+      <i class="ph ph-scales" aria-hidden="true"></i>
+      <span>LexQuiz</span>
+    </div>
+    <p class="brand-sub">Pháp Luật Đại Cương · CLB HTHT</p>
+  </header>
+
+  <main class="home-main">
+    <div class="home-hero">
+      <div class="hero-badge">
+        <i class="ph ph-certificate"></i>
+        <span>Ôn tập cuối kỳ</span>
       </div>
-      <p class="brand-sub">Pháp Luật Đại Cương · ITE6</p>
-    </header>
-
-    <main class="home-main">
-      <div class="home-hero">
-        <div class="hero-badge">
-          <i class="ph ph-certificate"></i>
-          <span>Ôn tập cuối kỳ</span>
-        </div>
-        <h1 class="hero-title">Kiểm tra<br /><em>kiến thức pháp luật</em></h1>
-        <p class="hero-desc">
-          175 câu hỏi trắc nghiệm · 5 bộ đề · Thời gian 18 phút/đề
-        </p>
-      </div>
-
-      <div class="quiz-sets" id="quiz-sets-list">
-        <!-- Rendered by JS -->
-      </div>
-
-      <div class="mode-section">
-        <h2 class="section-label">Chế độ luyện tập</h2>
-        <div class="mode-cards">
-          <button class="mode-card active" data-mode="exam" id="btn-mode-exam">
-            <i class="ph ph-timer"></i>
-            <strong>Thi thử</strong>
-            <span>Giới hạn thời gian, chấm điểm</span>
-          </button>
-          <button class="mode-card" data-mode="practice" id="btn-mode-practice">
-            <i class="ph ph-books"></i>
-            <strong>Luyện tập</strong>
-            <span>Xem đáp án ngay, không giới hạn</span>
-          </button>
-        </div>
-      </div>
-
-      <button class="btn-primary" id="btn-start">
-        <i class="ph ph-play"></i>
-        Bắt đầu
-      </button>
-    </main>
-  </div>
-
-  <!-- ═══════════════════ SCREEN: QUIZ ═══════════════════ -->
-  <div id="screen-quiz" class="screen">
-    <header class="quiz-header">
-      <button class="btn-icon" id="btn-back-home" title="Về trang chủ">
-        <i class="ph ph-arrow-left"></i>
-      </button>
-
-      <div class="quiz-meta">
-        <span id="quiz-set-label" class="set-label"></span>
-        <span class="dot">·</span>
-        <span id="quiz-mode-label" class="mode-label"></span>
-      </div>
-
-      <div class="timer-block" id="timer-block">
-        <i class="ph ph-clock"></i>
-        <span id="timer-display">18:00</span>
-      </div>
-    </header>
-
-    <div class="progress-bar-wrap">
-      <div class="progress-bar" id="progress-bar"></div>
+      <h1 class="hero-title">Kiểm tra<br /><em>kiến thức pháp luật</em></h1>
+      <p class="hero-desc">175 câu hỏi trắc nghiệm · 5 bộ đề · Thời gian 18 phút/đề</p>
     </div>
 
-    <main class="quiz-main">
-      <div class="question-counter">
-        <span id="q-current">1</span>/<span id="q-total">35</span>
-      </div>
-
-      <div class="question-card" id="question-card">
-        <p class="question-text" id="question-text"></p>
-
-        <div class="options-grid" id="options-grid">
-          <!-- Rendered by JS -->
-        </div>
-      </div>
-
-      <div class="quiz-nav">
-        <button class="btn-ghost" id="btn-prev">
-          <i class="ph ph-caret-left"></i>
-          Trước
+    <div class="mode-section">
+      <h2 class="section-label">Chế độ luyện tập</h2>
+      <div class="mode-cards mode-cards-3">
+        <button class="mode-card active" data-mode="exam" id="btn-mode-exam">
+          <i class="ph ph-timer"></i>
+          <strong>Thi thử</strong>
+          <span>Giới hạn thời gian, chấm điểm</span>
         </button>
-        <button class="btn-ghost" id="btn-flag" title="Đánh dấu">
-          <i class="ph ph-flag"></i>
+        <button class="mode-card" data-mode="practice" id="btn-mode-practice">
+          <i class="ph ph-lightbulb"></i>
+          <strong>Luyện tập</strong>
+          <span>Xem đáp án ngay, không giới hạn</span>
         </button>
-        <button class="btn-secondary" id="btn-next">
-          Tiếp
-          <i class="ph ph-caret-right"></i>
+        <button class="mode-card" data-mode="flashcard" id="btn-mode-flashcard">
+          <i class="ph ph-cards"></i>
+          <strong>Ôn flashcard</strong>
+          <span>Gộp nhiều đề, lật thẻ ôn nhanh</span>
         </button>
-      </div>
-
-      <!-- Question map -->
-      <div class="question-map-wrap">
-        <button class="collapse-toggle" id="btn-toggle-map">
-          <i class="ph ph-squares-four"></i>
-          Bản đồ câu hỏi
-          <i class="ph ph-caret-down" id="map-caret"></i>
-        </button>
-        <div class="question-map" id="question-map"></div>
-      </div>
-    </main>
-
-    <footer class="quiz-footer">
-      <button class="btn-danger" id="btn-submit">
-        <i class="ph ph-paper-plane-tilt"></i>
-        Nộp bài
-      </button>
-    </footer>
-  </div>
-
-  <!-- ═══════════════════ SCREEN: RESULT ═══════════════════ -->
-  <div id="screen-result" class="screen">
-    <header class="result-header">
-      <div class="brand">
-        <i class="ph ph-scales"></i>
-        <span>LexQuiz</span>
-      </div>
-    </header>
-
-    <main class="result-main">
-      <div class="result-card">
-        <div class="score-ring" id="score-ring">
-          <svg viewBox="0 0 120 120" class="ring-svg">
-            <circle class="ring-bg" cx="60" cy="60" r="52"/>
-            <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52"
-              stroke-dasharray="327" stroke-dashoffset="327"/>
-          </svg>
-          <div class="score-inner">
-            <span class="score-num" id="score-num">0</span>
-            <span class="score-denom" id="score-denom">/10</span>
-          </div>
-        </div>
-
-        <div class="result-stats">
-          <div class="stat">
-            <i class="ph ph-check-circle"></i>
-            <span id="stat-correct">0</span>
-            <label>Đúng</label>
-          </div>
-          <div class="stat">
-            <i class="ph ph-x-circle"></i>
-            <span id="stat-wrong">0</span>
-            <label>Sai</label>
-          </div>
-          <div class="stat">
-            <i class="ph ph-minus-circle"></i>
-            <span id="stat-skip">0</span>
-            <label>Bỏ qua</label>
-          </div>
-        </div>
-
-        <p class="result-verdict" id="result-verdict"></p>
-      </div>
-
-      <div class="review-section">
-        <h2 class="section-label">Xem lại đáp án</h2>
-        <div id="review-list"></div>
-      </div>
-    </main>
-
-    <footer class="result-footer">
-      <button class="btn-ghost full" id="btn-retry">
-        <i class="ph ph-arrow-counter-clockwise"></i>
-        Làm lại
-      </button>
-      <button class="btn-primary full" id="btn-home">
-        <i class="ph ph-house"></i>
-        Về trang chủ
-      </button>
-    </footer>
-  </div>
-
-  <!-- ═══════════════════ MODAL: Confirm submit ═══════════════════ -->
-  <div class="modal-overlay" id="modal-submit">
-    <div class="modal">
-      <i class="ph ph-warning modal-icon"></i>
-      <h3>Nộp bài?</h3>
-      <p id="modal-msg">Bạn còn <strong id="modal-unanswered">0</strong> câu chưa trả lời.</p>
-      <div class="modal-actions">
-        <button class="btn-ghost" id="modal-cancel">Tiếp tục làm</button>
-        <button class="btn-danger" id="modal-confirm">Nộp ngay</button>
       </div>
     </div>
+
+    <!-- Single-set picker: dùng cho Thi thử / Luyện tập -->
+    <div id="single-set-section">
+      <h2 class="section-label">Chọn bộ đề</h2>
+      <div class="quiz-sets" id="quiz-sets-list"></div>
+    </div>
+
+    <!-- Multi-set + options picker: dùng cho Ôn flashcard -->
+    <div id="flashcard-set-section" style="display:none;">
+      <h2 class="section-label">Chọn bộ đề (có thể chọn nhiều)</h2>
+      <div class="filter-chips" id="fc-set-chips">
+        <button class="chip active" data-set="all">Tất cả 175 câu</button>
+        <button class="chip" data-set="0">Đề 1</button>
+        <button class="chip" data-set="1">Đề 2</button>
+        <button class="chip" data-set="2">Đề 3</button>
+        <button class="chip" data-set="3">Đề 4</button>
+        <button class="chip" data-set="4">Đề 5</button>
+      </div>
+      <h2 class="section-label fc-order-label">Thứ tự</h2>
+      <div class="filter-chips">
+        <button class="chip active" id="chip-order-seq" data-order="seq">Tuần tự</button>
+        <button class="chip" id="chip-order-rand" data-order="rand">Ngẫu nhiên</button>
+      </div>
+    </div>
+
+    <button class="btn-primary" id="btn-start">
+      <i class="ph ph-play"></i>
+      Bắt đầu
+    </button>
+  </main>
+</div>
+
+<!-- ══════════════════════ SCREEN: QUIZ ══════════════════════ -->
+<div id="screen-quiz" class="screen">
+  <header class="quiz-header">
+    <button class="btn-icon" id="btn-back-home" title="Về trang chủ">
+      <i class="ph ph-arrow-left"></i>
+    </button>
+    <div class="quiz-meta">
+      <span id="quiz-set-label" class="set-label"></span>
+      <span class="dot">·</span>
+      <span id="quiz-mode-label" class="mode-label"></span>
+    </div>
+    <div class="timer-block" id="timer-block">
+      <i class="ph ph-clock"></i>
+      <span id="timer-display">18:00</span>
+    </div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar"></div>
   </div>
 
-  <script type="module" src="app.js"></script>
+  <main class="quiz-main">
+    <div class="question-counter">
+      <span id="q-current">1</span>/<span id="q-total">35</span>
+    </div>
+    <div class="question-card" id="question-card">
+      <p class="question-text" id="question-text"></p>
+      <div class="options-grid" id="options-grid"></div>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn-ghost" id="btn-prev"><i class="ph ph-caret-left"></i> Trước</button>
+      <button class="btn-ghost" id="btn-flag" title="Đánh dấu"><i class="ph ph-flag"></i></button>
+      <button class="btn-secondary" id="btn-next">Tiếp <i class="ph ph-caret-right"></i></button>
+    </div>
+    <div class="question-map-wrap">
+      <button class="collapse-toggle" id="btn-toggle-map">
+        <i class="ph ph-squares-four"></i>
+        Bản đồ câu hỏi
+        <i class="ph ph-caret-down" id="map-caret"></i>
+      </button>
+      <div class="question-map" id="question-map"></div>
+    </div>
+  </main>
+
+  <footer class="quiz-footer">
+    <button class="btn-danger" id="btn-submit">
+      <i class="ph ph-paper-plane-tilt"></i> Nộp bài
+    </button>
+  </footer>
+</div>
+
+<!-- ══════════════════════ SCREEN: RESULT ══════════════════════ -->
+<div id="screen-result" class="screen">
+  <header class="result-header">
+    <button class="btn-icon" id="btn-result-back"><i class="ph ph-arrow-left"></i></button>
+    <div class="brand"><i class="ph ph-scales"></i><span>LexQuiz</span></div>
+  </header>
+
+  <main class="result-main">
+    <div class="result-card">
+      <div class="score-ring" id="score-ring">
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle class="ring-bg" cx="60" cy="60" r="52"/>
+          <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52"
+            stroke-dasharray="327" stroke-dashoffset="327"/>
+        </svg>
+        <div class="score-inner">
+          <span class="score-num" id="score-num">0</span>
+          <span class="score-denom">/10</span>
+        </div>
+      </div>
+      <div class="result-stats">
+        <div class="stat"><i class="ph ph-check-circle"></i><span id="stat-correct">0</span><label>Đúng</label></div>
+        <div class="stat"><i class="ph ph-x-circle"></i><span id="stat-wrong">0</span><label>Sai</label></div>
+        <div class="stat"><i class="ph ph-minus-circle"></i><span id="stat-skip">0</span><label>Bỏ qua</label></div>
+      </div>
+      <p class="result-verdict" id="result-verdict"></p>
+    </div>
+    <div class="review-section">
+      <h2 class="section-label">Xem lại đáp án</h2>
+      <div id="review-list"></div>
+    </div>
+  </main>
+
+  <footer class="result-footer">
+    <button class="btn-ghost full" id="btn-retry"><i class="ph ph-arrow-counter-clockwise"></i> Làm lại</button>
+    <button class="btn-primary full" id="btn-home"><i class="ph ph-house"></i> Về trang chủ</button>
+  </footer>
+</div>
+
+<!-- ══════════════════════ SCREEN: FLASHCARD (Ôn tập) ══════════════════════ -->
+<div id="screen-review-all" class="screen">
+  <header class="quiz-header">
+    <button class="btn-icon" id="btn-fc-back-home" title="Về trang chủ">
+      <i class="ph ph-arrow-left"></i>
+    </button>
+    <div class="quiz-meta">
+      <span class="set-label" id="fc-scope-label">Tất cả 175 câu</span>
+      <span class="dot">·</span>
+      <span class="mode-label">Ôn flashcard</span>
+    </div>
+  </header>
+
+  <main class="review-all-main">
+    <div class="ra-stats-bar ra-stats-standalone">
+      <span id="ra-counter" class="ra-counter">0 / 0 câu</span>
+      <span class="ra-stat correct-stat"><i class="ph ph-check"></i> <span id="ra-correct">0</span></span>
+      <span class="ra-stat wrong-stat"><i class="ph ph-x"></i> <span id="ra-wrong">0</span></span>
+    </div>
+
+    <!-- Flashcard area -->
+    <div class="flashcard-wrap" id="flashcard-wrap">
+      <div class="flashcard" id="flashcard">
+        <div class="fc-header">
+          <span class="fc-badge" id="fc-set-badge">Đề 1</span>
+          <span class="fc-id" id="fc-id">ID 1</span>
+        </div>
+        <p class="fc-question" id="fc-question"></p>
+        <div class="fc-options" id="fc-options"></div>
+        <div class="fc-feedback" id="fc-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="ra-nav">
+      <button class="btn-ghost ra-btn" id="ra-btn-prev"><i class="ph ph-caret-left"></i> Trước</button>
+      <div class="ra-progress-ring">
+        <svg viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="20" class="rp-bg"/>
+          <circle cx="24" cy="24" r="20" class="rp-fill" id="rp-fill"
+            stroke-dasharray="126" stroke-dashoffset="126"/>
+        </svg>
+        <span id="ra-pct">0%</span>
+      </div>
+      <button class="btn-secondary ra-btn" id="ra-btn-next">Tiếp <i class="ph ph-caret-right"></i></button>
+    </div>
+
+    <!-- Mini question map -->
+    <div class="question-map-wrap">
+      <button class="collapse-toggle" id="btn-toggle-ra-map">
+        <i class="ph ph-squares-four"></i> Bản đồ câu hỏi
+        <i class="ph ph-caret-down"></i>
+      </button>
+      <div class="question-map" id="ra-question-map"></div>
+    </div>
+  </main>
+</div>
+
+<!-- ══════════════════════ SCREEN: LIBRARY ══════════════════════ -->
+<div id="screen-library" class="screen">
+  <header class="page-header">
+    <div class="brand"><i class="ph ph-books"></i><span>Thư viện tài liệu</span></div>
+    <p class="brand-sub">Tài liệu Pháp Luật Đại Cương · CLB HTHT</p>
+  </header>
+
+  <main class="library-main">
+    <!-- Search -->
+    <div class="lib-search-wrap">
+      <i class="ph ph-magnifying-glass lib-search-icon"></i>
+      <input type="text" class="lib-search" id="lib-search" placeholder="Tìm kiếm tài liệu..." />
+    </div>
+
+    <!-- Category tabs -->
+    <div class="lib-tabs" id="lib-tabs">
+      <button class="lib-tab active" data-cat="all">Tất cả</button>
+      <button class="lib-tab" data-cat="slide">LMS</button>
+      <button class="lib-tab" data-cat="exam">Đề thi</button>
+      <button class="lib-tab" data-cat="note">Tóm tắt lý thuyết</button>
+      <button class="lib-tab" data-cat="law">Ôn tập thêm</button>
+    </div>
+
+    <!-- Doc grid -->
+    <div class="doc-grid" id="doc-grid"></div>
+
+    <!-- PDF Viewer modal -->
+    <div class="pdf-overlay" id="pdf-overlay">
+      <div class="pdf-modal">
+        <div class="pdf-modal-header">
+          <div class="pdf-modal-title">
+            <i class="ph ph-file-pdf"></i>
+            <span id="pdf-title">Tài liệu</span>
+          </div>
+          <div class="pdf-modal-actions">
+            <a class="btn-icon" id="pdf-download" href="#" download title="Tải xuống">
+              <i class="ph ph-download-simple"></i>
+            </a>
+            <a class="btn-icon" id="pdf-open-tab" href="#" target="_blank" title="Mở tab mới">
+              <i class="ph ph-arrow-square-out"></i>
+            </a>
+            <button class="btn-icon" id="pdf-close" title="Đóng">
+              <i class="ph ph-x"></i>
+            </button>
+          </div>
+        </div>
+        <div class="pdf-viewer-wrap">
+          <iframe id="pdf-frame" src="" title="PDF viewer"></iframe>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ══════════════════════ MODAL: Confirm submit ══════════════════════ -->
+<div class="modal-overlay" id="modal-submit">
+  <div class="modal">
+    <i class="ph ph-warning modal-icon"></i>
+    <h3>Nộp bài?</h3>
+    <p>Bạn còn <strong id="modal-unanswered">0</strong> câu chưa trả lời.</p>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="modal-cancel">Tiếp tục làm</button>
+      <button class="btn-danger" id="modal-confirm">Nộp ngay</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
 </body>
 </html>
