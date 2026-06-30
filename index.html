@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LexQuiz — Pháp Luật Đại Cương</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
 </head>
 <body>
@@ -17,6 +16,9 @@
   </button>
   <button class="nav-item" data-screen="library">
     <i class="ph ph-books"></i><span>Thư viện</span>
+  </button>
+  <button class="nav-item" data-screen="links">
+    <i class="ph ph-compass"></i><span>Liên kết</span>
   </button>
 </nav>
 
@@ -237,6 +239,23 @@
       </button>
       <div class="question-map" id="ra-question-map"></div>
     </div>
+  </main>
+</div>
+
+<!-- ══════════════════════ SCREEN: LINKS (Giới thiệu trang ôn tập khác) ══════════════════════ -->
+<div id="screen-links" class="screen">
+  <header class="page-header">
+    <div class="brand"><i class="ph ph-compass"></i><span>Trang ôn tập khác</span></div>
+    <p class="brand-sub">Các nguồn tham khảo bên ngoài cho môn Pháp Luật Đại Cương</p>
+  </header>
+
+  <main class="links-main">
+    <div class="links-note">
+      <i class="ph ph-info"></i>
+      <span>Đây là các trang web bên thứ ba, không thuộc CLB HTHT. Nội dung và độ chính xác do đơn vị sở hữu chịu trách nhiệm.</span>
+    </div>
+
+    <div class="link-grid" id="link-grid"></div>
   </main>
 </div>
 

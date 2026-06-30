@@ -145,6 +145,7 @@ const screens = {
   result:      $('screen-result'),
   flashcard:   $('screen-review-all'),
   library:     $('screen-library'),
+  links:       $('screen-links'),
 };
 
 // ── Screen switching ────────────────────────────────────────────
@@ -168,6 +169,7 @@ document.querySelectorAll('.nav-item').forEach(btn => {
   btn.addEventListener('click', () => {
     const target = btn.dataset.screen;
     if (target === 'library') renderLibrary();
+    if (target === 'links')   renderLinks();
     showScreen(target);
   });
 });
@@ -675,6 +677,63 @@ $('lib-search').addEventListener('input', e => {
   renderLibrary();
 });
 
+// ═══════════════════ LINKS (Trang ôn tập khác) ═══════════════════
+// Chỉnh sửa mảng này để thêm/bớt trang web giới thiệu.
+const EXTERNAL_LINKS = [
+  {
+    name: "Tailieuhust",
+    url: "https://tailieuhust.com/tai-lieu-mon-phap-luat-dai-cuong-hust/",
+    desc: "Cổ điển, Tôn trọng",
+    icon: "ph-cards",
+    tag: "Nguồn tập hợp",
+  },
+  {
+    name: "Thư viện Pháp luật",
+    url: "https://thuvienphapluat.vn",
+    desc: "Tra cứu văn bản pháp luật, nghị định, thông tư chính thức và cập nhật mới nhất.",
+    icon: "ph-bank",
+    tag: "Văn bản pháp luật",
+  },
+  {
+    name: "Câu lạc bộ Học Tập",
+    url: "https://quizizz.com",
+    desc: "Tổng hợp link các bộ đề ôn tập (Đã thêm tại web).",
+    icon: "ph-users-three",
+    tag: "Trắc nghiệm",
+  },
+  {
+    name: "Công cụ tính điểm Nhật 2",
+    url: "https://ite6.io.vn",
+    desc: "Công cụ tính điểm môn Nhật 2 dựa vào số điểm Mini Test và Kamatsu",
+    icon: "ph-game-controller ",
+    tag: "Ngoài lề",
+  },
+];
+
+function renderLinks() {
+  const grid = $('link-grid');
+  grid.innerHTML = '';
+  EXTERNAL_LINKS.forEach(link => {
+    const a = document.createElement('a');
+    a.className = 'link-card';
+    a.href = link.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.innerHTML = `
+      <div class="link-icon-wrap"><i class="ph ${link.icon}"></i></div>
+      <div class="link-info">
+        <div class="link-info-top">
+          <strong>${link.name}</strong>
+          <i class="ph ph-arrow-square-out link-ext-icon"></i>
+        </div>
+        <p>${link.desc}</p>
+        <span class="link-tag">${link.tag}</span>
+      </div>`;
+    grid.appendChild(a);
+  });
+}
+
 // ═══════════════════ INIT ═══════════════════
 initHome();
 renderLibrary();
+renderLinks();
